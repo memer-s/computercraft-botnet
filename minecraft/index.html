@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <title>Vite App</title>
+  </head>
+  <body>
+    <div id="computers"></div>
+    <main>
+      <section>
+        <h1>Movement</h1>
+        <button command="forward">Forward</button>
+        <button command="back">Backward</button>
+        <button command="right">Turn right</button>
+        <button command="left">Turn left</button>
+        <br>
+        <button command="down">down</button>
+        <button command="up">up</button>
+      </section>
+      <section>
+        <h1>Mining</h1>
+        <button command="dig">Dig</button>
+        <button command="digup">Dig up</button>
+        <button command="digdown">Dig down</button>
+      </section>
+      <section>
+        <h1>Build</h1>
+        <button command="place">Place</button>
+        <button command="placeup">Place over</button>
+        <button command="placedown">Place under</button>
+      </section>
+    </main>
+    <main>
+      <section>
+        <h1>Inventory</h1>
+        <button command="inventory">Request inventory</button>
+        <div id="inv">
+        </div>
+        <button command="refuel">Refuel</button>
+      </section>
+      <section>
+        <h1>Instructions</h1>
+        <div id="instructions"></div>
+      </section>
+      <section>
+        <h1>Send commands</h1>
+        repeats: <input type="number" id="repeats" min="1"><br><br>
+        <button commands="mine" class="ml">mine</button>x: <input type="number" id="minex" min="1">y: <input type="number" id="miney" min="1"><br><br>
+        <button servercommand="clear">Clear instructions</button>
+      </section>
+    </main>
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>

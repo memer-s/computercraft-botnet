@@ -1,0 +1,81 @@
+* {
+  margin: 0;
+  font-family: 'Open Sans', sans-serif;
+}
+
+#computers {
+  background-color: #f3f3f3;
+  display: flex;
+  height: 120px;
+}
+
+button {
+  margin-bottom: 5px;
+}
+
+#computers div {
+  background-color: rgb(219, 219, 219);
+  height: fit-content;
+  margin: 5px;
+  padding: 6px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#minex, #miney, #repeats {
+  margin-right: 10px;
+  width: 40px;
+}
+
+em {
+  display: block;
+  color: rgb(255, 70, 70);
+}
+
+pre {
+  font-family: monospace;
+  font-size: 12px;
+}
+
+.ml {
+  margin-right: 10px;
+}
+
+#selected {
+  background-color: #00ffbf !important;
+  color: #000;
+}
+
+#inv {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+}
+
+#inv p {
+  font-size: 12px;
+  padding: 2px;
+  border: 1px solid;
+  margin: 1px;
+}
+
+#instructions {
+  overflow-x: scroll;
+  overflow-y: scroll;
+  height: 400px;
+  width: 300px;
+  background-color: #eee;
+  padding: 5px;
+}
+
+.selected {
+  border: 2px dashed rgb(77, 77, 77) !important;
+}
+
+main {
+  display: flex;
+}
+
+section {
+  margin: 10px;
+}
