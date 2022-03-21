@@ -47,4 +47,49 @@ function layer (z,xs,ys)
 	end
 end
 
+-- very bad, tired and just doing stuff til it works, and uneffective
+function tunnel (xs,ys) 
+	if turtle.getFuelLevel() > ((xs*ys)+10) then
+		for i = 0, xs-1, 1 do
+			if i ~= 0 then
+				turtle.turnLeft()
+				turtle.forward()
+				turtle.turnRight()
+			end
+			for j = 0, ys-1, 1 do
+				if j ~= 0 then
+					turtle.up()
+				end
+				turtle.dig()
+			end
+			for j = 0, ys-2, 1 do
+				turtle.down()
+			end
+		end
+		if xs%2 == 1 then
+			for i = 0, ys-1, 1 do
+				turtle.down()
+			end
+			turtle.turnRight()
+			for i = 0, xs-2, 1 do
+				turtle.forward()
+			end
+			turtle.turnLeft()
+		else
+			turtle.turnRight()
+			for i = 0, xs-2, 1 do
+				turtle.forward()
+			end
+			turtle.turnLeft()
+		end
+	end
+	turtle.forward()
+end
+
+tunnel(4,4)
+tunnel(4,4)
+tunnel(4,4)
+tunnel(4,4)
+tunnel(4,4)
+
 return {layer=layer}
