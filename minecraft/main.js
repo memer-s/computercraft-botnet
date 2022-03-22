@@ -6,6 +6,7 @@ const socket = io("http://localhost:3001")
 let computers = document.getElementById("computers")
 let selectedIndex = 100;
 let invIndex = 0;
+let lastclicked = '';
 
 let oldjson;
 let oldIndex;
@@ -77,6 +78,12 @@ function c(elementName, options) {
   return element
 }
 
+let addtolist = document.getElementById('addtolist')
+addtolist.addEventListener('click', () => {
+  document.getElementById('sendlistta').value += lastclicked
+  console.log(lastclicked);
+})
+
 function renderComputerList(list, data) {
   console.log("bruh",data);
 
@@ -106,8 +113,17 @@ function renderComputerList(list, data) {
       }
     }
     el.addEventListener("click", () => {
-      socket.emit("selection", list[i])
+      if(document.getElementById('sendlistta').value.length < 5) {
+        socket.emit("selection", [list[i]])
+      }
+      else {
+        let computers = document.getElementById('sendlistta').value.split('\n').slice(0,-1)
+        console.log(computers);
+        socket.emit("selection", computers)
+      }
       selectedIndex = i;
+      lastclicked = el.innerText.split('\n')[0] + '\n';
+      console.log(el1);
     })
 
     computers.append(el)

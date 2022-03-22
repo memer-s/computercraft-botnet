@@ -1,6 +1,5 @@
 import {WebSocketServer} from 'ws'
 import {Server} from 'socket.io';
-import { getSystemErrorName } from 'util';
 
 const io = new Server(3001, {cors: {origin: '*'}})
 
@@ -11,12 +10,12 @@ function print(str) {
 function sendCommand(data, computer) {
 	print(`sending forward to ${computer}`)
 	websockets[computer].send(JSON.stringify(data))
-	print(data)
+	// print(data)
 }
 
 let computers = {}
 let websockets = {}
-let selected;
+let selectedComputers;
 let halt = false;
 let socketo;
 
@@ -24,27 +23,31 @@ io.on("connection", (socket) => {
 	socketo = socket;
 	setInterval(() => {
 		socket.emit("ping", computers)
+		// console.log(selectedComputers);
 	}, 100)
 
 	socket.on("selection", (data) => {
-		selected = data
-		print(data+": is selected")
+		selectedComputers = data
+		// print(data+": is selected")
 	})
 
 	socket.on("command", (data) => {
 		console.log(data);
-		if(selected) {
-			if(computers[selected] != undefined) {
-				if(!computers[selected].ishalted) {
-					sendCommand(data, selected)
-					computers[selected].ishalted = true
+		if(selectedComputers) {
+			for (let i = 0; i < selectedComputers.length; i++) {
+				let selected = selectedComputers[i]
+				if(computers[selected] != undefined) {
+					if(!computers[selected].ishalted) {
+						sendCommand(data, selected)
+						computers[selected].ishalted = true
+					}
+					else {
+						computers[selected].commands.push(data)
+					}
 				}
 				else {
-					computers[selected].commands.push(data)
+					console.log("Computer selected is no longer online.")
 				}
-			}
-			else {
-				console.log("Computer selected is no longer online.")
 			}
 		}
 		else {
@@ -54,21 +57,24 @@ io.on("connection", (socket) => {
 
 	socket.on("commands", (data) => {
 		console.log(data);
-		if(selected) {
-			if(computers[selected] != undefined) {
-				if(!computers[selected].ishalted) {
-					sendCommand(data, selected)
-					computers[selected].ishalted = true
+		if(selectedComputers) {
+			for (let i = 0; i < selectedComputers.length; i++) {
+				let selected = selectedComputers[i]
+				if(computers[selected] != undefined) {
+					if(!computers[selected].ishalted) {
+						sendCommand(data, selected)
+						computers[selected].ishalted = true
+					}
+					else {
+						computers[selected].commands.push(data)
+					}
+					for(let i = 0; i < data.repeats - 1; i++) {
+						computers[selected].commands.push(data)
+					}
 				}
 				else {
-					computers[selected].commands.push(data)
+					console.log("Computer selected is no longer online.")
 				}
-				for(let i = 0; i < data.repeats - 1; i++) {
-					computers[selected].commands.push(data)
-				}
-			}
-			else {
-				console.log("Computer selected is no longer online.")
 			}
 		}
 		else {
@@ -77,15 +83,18 @@ io.on("connection", (socket) => {
 	})
 
 	socket.on("servercommand", (data) => {
-		if(selected) {
-			if(computers[selected] != undefined) {
-				console.log(data.command)
-				if(data.command == 'clear') {
-					computers[selected].commands = []
+		if(selectedComputers) {
+			for (let i = 0; i < selectedComputers.length; i++) {
+				let selected = selectedComputers[i]
+				if(computers[selected] != undefined) {
+					console.log(data.command)
+					if(data.command == 'clear') {
+						computers[selected].commands = []
+					}
 				}
-			}
-			else {
-				console.log("Computer selected is no longer online.")
+				else {
+					console.log("Computer selected is no longer online.")
+				}
 			}
 		}
 		else {

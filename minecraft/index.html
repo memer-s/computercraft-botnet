@@ -50,8 +50,13 @@
       <section>
         <h1>Send commands</h1>
         repeats: <input type="number" id="repeats" min="1"><br><br>
-        <button commands="mine" class="ml">mine</button>x: <input type="number" id="minex" min="1">y: <input type="number" id="miney" min="1"><br><br>
+        <button commands="mine" class="ml">mine</button>x: <input type="number" id="minex" min="1">y: <input type="number" id="miney" min="1"><br>
+        <button commands="tunnel" class="ml">tunnel</button>x: <input type="number" id="tunnelx" min="1">y: <input type="number" id="tunnely" min="1"><br><br>
         <button servercommand="clear">Clear instructions</button>
+        <br><br>
+        <button id="addtolist">Add selected computer to sendlist.</button>
+        <br>
+        <textarea cols="30" rows="10" id="sendlistta"></textarea>
       </section>
     </main>
     <script type="module" src="/main.js"></script>

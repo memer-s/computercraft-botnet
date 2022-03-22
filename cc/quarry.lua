@@ -86,10 +86,4 @@ function tunnel (xs,ys)
 	turtle.forward()
 end
 
-tunnel(4,4)
-tunnel(4,4)
-tunnel(4,4)
-tunnel(4,4)
-tunnel(4,4)
-
-return {layer=layer}
+return {layer=layer, tunnel=tunnel}
