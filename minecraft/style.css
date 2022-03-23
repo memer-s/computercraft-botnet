@@ -22,7 +22,7 @@ button {
   cursor: pointer;
 }
 
-#minex, #miney, #repeats {
+#minex, #miney, #tunnelx, #tunnely, #repeats {
   margin-right: 10px;
   width: 40px;
 }

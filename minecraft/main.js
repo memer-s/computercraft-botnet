@@ -54,6 +54,10 @@ for(let i = 0; i < buttons.length; i++) {
         case 'mine':
           socket.emit("commands", {command: 'mine', repeats: parseInt(rep.value), params: [parseInt(document.getElementById("minex").value), parseInt(document.getElementById("miney").value)]})
           break;
+        
+        case 'tunnel':
+          socket.emit("commands", {command: 'tunnel', repeats: parseInt(rep.value), params: [parseInt(document.getElementById("tunnelx").value), parseInt(document.getElementById("tunnely").value)]})
+          break;
       }
     })
   }

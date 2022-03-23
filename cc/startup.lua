@@ -4,7 +4,7 @@ ws.send("{\"status\": 200}")
 local event, url, message
 local name = "NOT ASSIGNED"
 
-Z = 0
+-- Z = 0
 Quarry = require('quarry')
 
 repeat
@@ -89,9 +89,13 @@ repeat
 	end
 
 	if data.command == "mine" then
-		Quarry.layer(Z,data.params[1],data.params[2])
-		Z = Z + 1
-		print(Z)
+		Quarry.layer(data.params[1],data.params[2])
+		-- Z = Z + 1
+		-- print(Z)
+	end
+
+	if data.command == "quarry" then
+		Quarry.layer(data.params[1],data.params[2])
 	end
 
 	if data.command == "run" then

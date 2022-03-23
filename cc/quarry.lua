@@ -1,9 +1,9 @@
-function layer (z,xs,ys)
+function layer (xs,ys)
 	if turtle.getFuelLevel() > ((xs*ys)+50) then
 
-		for i = 1, z, 1 do
-			turtle.down()
-		end
+		-- for i = 1, z, 1 do
+		-- 	turtle.down()
+		-- end
 
 		for i = 1, xs, 1 do
 			turtle.digDown()
@@ -40,10 +40,10 @@ function layer (z,xs,ys)
 
 		turtle.turnRight()
 
-		for i = 1, z, 1 do
-			turtle.up()
-		end
-
+		-- for i = 1, z, 1 do
+		-- 	turtle.up()
+		-- end
+		turtle.down()
 	end
 end
 
